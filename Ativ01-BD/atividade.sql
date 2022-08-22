@@ -18,24 +18,38 @@ Empregado(
     Comissao decimal(10,2) NULL
     PRIMARY KEY (IdEmpregado)
 )
+-- Feito no SQLiteStudio
+
 -- Escreva o comando SQL que execute o solicitado em cada questão abaixo:
 
 -- 1. Lista Nome e salário de todos os Empregados.
+select NomeEmpregado,Salario from Empregado;
+
 -- 2. Lista Nome e Local de todos os Departamentos.
--- 3. Lista Nome, salário e comissão dos Empregados com salario maior que 
--- 1.800.b
+select NomeDepto,Local from Departamento;
+
+-- 3. Lista Nome, salário e comissão dos Empregados com salario maior que 1.800.
+select NomeEmpregado,Salario > 1.800,Comissao from Empregado; --verificar se não é melhor usar where ex 3 ==================================================
+
 -- 4. Lista Nome, divisão e Local dos Departamentos da divisão SUL. 
--- 5. Lista Nome, departamento, salario e cargo dos Empregados com cargo 
--- GER e salário menor que 2.000.
--- 6. Lista todos os dados dos Empregados com cargo ATEND ou salário entre 
--- 1.800 e 2.000.
--- 7. Lista Nome, Salário, comissão e remuneração total (Salário + 
--- Comissão) de todos os empregados. 
--- 8. Lista Nome, Salário, comissão e remuneração total (Salário + 
--- Comissão) de todos os empregados com salário maior que 2.000 ou comissão 
--- maior que 700.
--- 9. Lista Nome, Salário, comissão e remuneração total de todos os 
--- empregados com remuneração total menor que 1.800.
+select NomeDepto,Local,Divisao from Departamento where Divisao="SUL";
+
+-- 5. Lista Nome, departamento, salario e cargo dos Empregados com cargo GER e salário menor que 2.000.
+select NomeEmpregado,IdDepto,Salario,Cargo from Empregado where Cargo="GER" and Salario < 2.000;
+
+
+-- 6. Lista todos os dados dos Empregados com cargo ATEND ou salário entre 1.800 e 2.000.
+select * from Empregado where (Cargo="ATEND") or (Salario >= 1.800 and Salario <= 2.000);
+
+-- 7. Lista Nome, Salário, comissão e remuneração total (Salário +  Comissão) de todos os empregados. 
+select NomeEmpregado,Salario,Comissao, Salario + Comissao As "Remuneracao Total" from Empregado;
+
+-- 8. Lista Nome, Salário, comissão e remuneração total (Salário + Comissão) de todos os empregados com salário maior que 2.000 ou comissão maior que 700.
+select NomeEmpregado,Salario,Comissao, Salario + Comissao As "Remuneracao Total" from Empregado where (Salario > 2.000) or (Comissao > 700);
+
+-- 9. Lista Nome, Salário, comissão e remuneração total de todos os empregados com remuneração total menor que 1.800.
+
+
 -- 10. Lista Nome e cargo dos Empregados que o nome comece com a letra D.
 -- 11. Lista Nome e cargo dos Empregados que o nome tenha N como terceira 
 -- letra.
