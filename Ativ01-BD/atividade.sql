@@ -35,67 +35,85 @@ select NomeEmpregado,Salario > 1.800,Comissao from Empregado; --verificar se nã
 select NomeDepto,Local,Divisao from Departamento where Divisao="SUL";
 
 -- 5. Lista Nome, departamento, salario e cargo dos Empregados com cargo GER e salário menor que 2.000.
-select NomeEmpregado,IdDepto,Salario,Cargo from Empregado where Cargo="GER" and Salario < 2.000;
+select NomeEmpregado,IdDepto,Salario,Cargo from Empregado where Cargo="GER" and Salario < 2000;
 
 
 -- 6. Lista todos os dados dos Empregados com cargo ATEND ou salário entre 1.800 e 2.000.
-select * from Empregado where (Cargo="ATEND") or (Salario >= 1.800 and Salario <= 2.000);
+select * from Empregado where (Cargo="ATEND") or (Salario >= 1800 and Salario <= 2000);
 
 -- 7. Lista Nome, Salário, comissão e remuneração total (Salário +  Comissão) de todos os empregados. 
 select NomeEmpregado,Salario,Comissao, Salario + Comissao As "Remuneracao Total" from Empregado;
 
 -- 8. Lista Nome, Salário, comissão e remuneração total (Salário + Comissão) de todos os empregados com salário maior que 2.000 ou comissão maior que 700.
-select NomeEmpregado,Salario,Comissao, Salario + Comissao As "Remuneracao Total" from Empregado where (Salario > 2.000) or (Comissao > 700);
+select NomeEmpregado,Salario,Comissao, Salario + Comissao As "Remuneracao Total" from Empregado where (Salario > 2000) or (Comissao > 700);
 
 -- 9. Lista Nome, Salário, comissão e remuneração total de todos os empregados com remuneração total menor que 1.800.
-
+select NomeEmpregado,Salario,Comissao, Salario + Comissao As "Remuneracao Total" from Empregado where (Salario + Comissao) < 1800;
 
 -- 10. Lista Nome e cargo dos Empregados que o nome comece com a letra D.
--- 11. Lista Nome e cargo dos Empregados que o nome tenha N como terceira 
--- letra.
--- 12. Lista Nome e cargo dos Empregados que o nome tenha N (maiúscula ou 
--- minúscula) como terceira letra
--- 13. Lista Nome, Salário, comissão e remuneração total (Salário + 
--- Comissão) de todos os empregados com salário maior que 2.000 ou comissão 
--- maior que 800. Apresenta o resultado classificado em ordem alfabética de 
--- nome.
--- 14. Lista Nome, Salário, comissão e remuneração total (Salário + 
--- Comissão) de todos os empregados com salário maior que 2.000 ou comissão 
--- maior que 800. Apresenta o resultado classificado em ordem crescente de 
--- salario.
--- 15. Lista Nome, Salário, comissão e remuneração total (Salário + 
--- Comissão) de todos os empregados com salário maior que 2.000 ou comissão 
--- maior que 800. Apresenta o resultado classificado em ordem decrescente de 
--- salario.
--- 16. Lista Nome, Salário, comissão e remuneração total (Salário + 
--- Comissão) de todos os empregados com salário maior que 2.000 ou comissão 
--- maior que 800. Apresenta o resultado classificado em ordem crescente de 
--- remuneração total
--- 17. Lista Nome, Salário, comissão e remuneração total de todos os 
--- empregados com salário maior que 2.000 ou comissão maior que 800. 
--- Apresenta o resultado classificado em ordem crescente de departamento e em 
--- cada departamento, em ordem decrescente de salario.
--- P
--- A
--- G
--- E 
--- 18. Lista o maior salário, o menor salário e a média dos salários de 
--- todos os Empregados.
--- 19. Lista o maior salário, o menor salário, a média dos salários e a 
--- quantidade dos Empregados com cargo GER ou VENDAS.
--- 20. Lista o cargo, o maior salário, o menor salário, a média dos 
--- salários e a quantidade dos Empregados para cada cargo
--- 21. Lista o departamento, o maior salário, o menor salário, a média dos 
--- salários e a quantidade dos Empregados para cada departamento
--- 22. Lista o departamento, o maior salário, o menor salário, a média dos 
--- salários e a quantidade dos Empregados para cada departamento, 
--- considerando somente empregados com salário maior que 1.800
--- 23. Lista o departamento, o cargo, o maior salário, o menor salário, a 
--- média dos salários e a quantidade dos Empregados para cada cargo dentro de 
--- cada departamento
--- 24. Lista o departamento, o maior salário, o menor salário, a média dos 
--- salários e a quantidade dos Empregados, apresentando somente departamentos 
--- que tenham pelo menos 5 empregados. 
+select NomeEmpregado, Cargo from Empregado where NomeEmpregado Like "D%";
+
+-- 11. Lista Nome e cargo dos Empregados que o nome tenha N como terceira letra.
+select NomeEmpregado, Cargo from Empregado where NomeEmpregado Like "%N%";
+
+-- 12. Lista Nome e cargo dos Empregados que o nome tenha N (maiúscula ou minúscula) como terceira letra
+select NomeEmpregado, Cargo from Empregado where NomeEmpregado Like "%N%";
+
+-- 13. Lista Nome, Salário, comissão e remuneração total (Salário +  Comissão) de todos os empregados com salário maior que 2.000 ou comissão maior que 800. Apresenta o resultado classificado em ordem alfabética de nome.
+select NomeEmpregado,Salario,Comissao, Salario + Comissao As "Remuneracao Total" from Empregado where (Salario > 2000) or (Comissao > 800) order by NomeEmpregado;
+
+
+-- 14. Lista Nome, Salário, comissão e remuneração total (Salário + Comissão) de todos os empregados com salário maior que 2.000 ou comissão maior que 800. Apresenta o resultado classificado em ordem crescente de  salario.
+select NomeEmpregado,Salario,Comissao, Salario + Comissao As "Remuneracao Total" from Empregado where (Salario > 2000) or (Comissao > 800) order by Salario;
+
+-- 15. Lista Nome, Salário, comissão e remuneração total (Salário + Comissão) de todos os empregados com salário maior que 2.000 ou comissão maior que 800. Apresenta o resultado classificado em ordem decrescente de salario.
+select NomeEmpregado,Salario,Comissao, Salario + Comissao As "Remuneracao Total" from Empregado where (Salario > 2000) or (Comissao > 800) order by Salario desc;
+
+
+-- 16. Lista Nome, Salário, comissão e remuneração total (Salário + Comissão) de todos os empregados com salário maior que 2.000 ou comissão maior que 800. Apresenta o resultado classificado em ordem crescente de remuneração total
+select NomeEmpregado,Salario,Comissao, Salario + Comissao As "Remuneracao Total" 
+from Empregado 
+where (Salario > 2000) or (Comissao > 800) 
+order by Salario + Comissao;
+
+-- 17. Lista Nome, Salário, comissão e remuneração total de todos os empregados com salário maior que 2.000 ou comissão maior que 800. Apresenta o resultado classificado em ordem crescente de departamento e em cada departamento, em ordem decrescente de salario.
+select NomeEmpregado,Salario,Comissao, Salario + Comissao As "Remuneracao Total" 
+from Empregado 
+where (Salario > 2000) or (Comissao > 800) 
+order by IdDepto, Salario desc;
+
+-- 18. Lista o maior salário, o menor salário e a média dos salários de todos os Empregados.
+select Max(Salario) As MaiorSalario, Min(Salario) As MenorSalario, Avg(Salario) As MediaSalario
+from Empregado;
+
+-- 19. Lista o maior salário, o menor salário, a média dos salários e a quantidade dos Empregados com cargo GER ou VENDAS.
+select Max(Salario) As MaiorSalario, Min(Salario) As MenorSalario, Avg(Salario) As MediaSalario, Count(Cargo) As QuantidadeEmpregados
+from Empregado
+where Cargo="GER" or Cargo="VENDAS";
+
+-- 20. Lista o cargo, o maior salário, o menor salário, a média dos salários e a quantidade dos Empregados para cada cargo.
+select Cargo, Max(Salario) As MaiorSalario, Min(Salario) As MenorSalario, Avg(Salario) As MediaSalario, Count(*) As QuantidadeEmpregados
+from Empregado
+group by Cargo;
+
+-- 21. Lista o departamento, o maior salário, o menor salário, a média dos salários e a quantidade dos Empregados para cada departamento.
+select IdDepto, Max(Salario) As MaiorSalario, Min(Salario) As MenorSalario, Avg(Salario) As MediaSalario, Count(*) As QuantidadeEmpregados
+from Empregado
+group by IdDepto;
+
+-- 22. Lista o departamento, o maior salário, o menor salário, a média dos salários e a quantidade dos Empregados para cada departamento, considerando somente empregados com salário maior que 1.800
+select IdDepto, Max(Salario) As MaiorSalario, Min(Salario) As MenorSalario, Avg(Salario) As MediaSalario, Count(*) As QuantidadeEmpregados
+from Empregado
+where Salario > 1800
+group by IdDepto;
+
+-- 23. Lista o departamento, o cargo, o maior salário, o menor salário, a média dos salários e a quantidade dos Empregados para cada cargo dentro de cada departamento.
+select IdDepto,Cargo, Max(Salario) As MaiorSalario, Min(Salario) As MenorSalario, Avg(Salario) As MediaSalario, Count(*) As QuantidadeEmpregados
+from Empregado
+group by IdDepto;
+
+-- 24. Lista o departamento, o maior salário, o menor salário, a média dos salários e a quantidade dos Empregados, apresentando somente departamentos que tenham pelo menos 5 empregados. 
+
 -- 25. Lista o departamento, o maior salário, o menor salário, a média dos 
 -- salários e a quantidade dos Empregados com salário maior que 1.400, 
 -- apresentando somente departamentos que tenham pelo menos 3 empregados 
