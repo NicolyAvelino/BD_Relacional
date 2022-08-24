@@ -1,6 +1,6 @@
 -- Considere as tabelas EMPREGADO e DEPARTAMENTO conforme abaixo:
 Departamento( 
-    IdDeptoint NOT NULL,
+    IdDepto int NOT NULL,
     NomeDepto varchar(15)NOT NULL,
     Gerente int         NOT NULL,
     Divisao varchar(10) NOT NULL,
@@ -31,8 +31,9 @@ select NomeDepto, Local
 from Departamento;
 
 -- 3. Lista Nome, salário e comissão dos Empregados com salario maior que 1.800.
-select NomeEmpregado,Salario > 1.800,Comissao 
-from Empregado; --verificar se não é melhor usar where ex 3 ==================================================
+select NomeEmpregado,Salario,Comissao 
+from Empregado
+where Salario > 1800; 
 
 -- 4. Lista Nome, divisão e Local dos Departamentos da divisão SUL. 
 select NomeDepto,Local,Divisao 
@@ -50,16 +51,16 @@ from Empregado
 where (Cargo="ATEND") or (Salario >= 1800 and Salario <= 2000);
 
 -- 7. Lista Nome, Salário, comissão e remuneração total (Salário +  Comissão) de todos os empregados. 
-select NomeEmpregado,Salario,Comissao, Salario + Comissao As "Remuneracao Total" 
+select NomeEmpregado,Salario,Comissao, Salario + Comissao As "RemuneracaoTotal" 
 from Empregado;
 
 -- 8. Lista Nome, Salário, comissão e remuneração total (Salário + Comissão) de todos os empregados com salário maior que 2.000 ou comissão maior que 700.
-select NomeEmpregado,Salario,Comissao, Salario + Comissao As "Remuneracao Total" 
+select NomeEmpregado,Salario,Comissao, Salario + Comissao As "RemuneracaoTotal" 
 from Empregado 
 where (Salario > 2000) or (Comissao > 700);
 
 -- 9. Lista Nome, Salário, comissão e remuneração total de todos os empregados com remuneração total menor que 1.800.
-select NomeEmpregado,Salario,Comissao, Salario + Comissao As "Remuneracao Total" 
+select NomeEmpregado,Salario,Comissao, Salario + Comissao As "RemuneracaoTotal" 
 from Empregado 
 where (Salario + Comissao) < 1800;
 
@@ -79,31 +80,31 @@ from Empregado
 where NomeEmpregado Like "%N%";
 
 -- 13. Lista Nome, Salário, comissão e remuneração total (Salário +  Comissão) de todos os empregados com salário maior que 2.000 ou comissão maior que 800. Apresenta o resultado classificado em ordem alfabética de nome.
-select NomeEmpregado,Salario,Comissao, Salario + Comissao As "Remuneracao Total" 
+select NomeEmpregado,Salario,Comissao, Salario + Comissao As "RemuneracaoTotal" 
 from Empregado 
 where (Salario > 2000) or (Comissao > 800) 
 order by NomeEmpregado;
 
 -- 14. Lista Nome, Salário, comissão e remuneração total (Salário + Comissão) de todos os empregados com salário maior que 2.000 ou comissão maior que 800. Apresenta o resultado classificado em ordem crescente de  salario.
-select NomeEmpregado,Salario,Comissao, Salario + Comissao As "Remuneracao Total" 
+select NomeEmpregado,Salario,Comissao, Salario + Comissao As "RemuneracaoTotal" 
 from Empregado 
 where (Salario > 2000) or (Comissao > 800) 
 order by Salario;
 
 -- 15. Lista Nome, Salário, comissão e remuneração total (Salário + Comissão) de todos os empregados com salário maior que 2.000 ou comissão maior que 800. Apresenta o resultado classificado em ordem decrescente de salario.
-select NomeEmpregado,Salario,Comissao, Salario + Comissao As "Remuneracao Total" 
+select NomeEmpregado,Salario,Comissao, Salario + Comissao As "RemuneracaoTotal" 
 from Empregado 
 where (Salario > 2000) or (Comissao > 800) 
 order by Salario desc;
 
 -- 16. Lista Nome, Salário, comissão e remuneração total (Salário + Comissão) de todos os empregados com salário maior que 2.000 ou comissão maior que 800. Apresenta o resultado classificado em ordem crescente de remuneração total
-select NomeEmpregado,Salario,Comissao, Salario + Comissao As "Remuneracao Total" 
+select NomeEmpregado,Salario,Comissao, Salario + Comissao As "RemuneracaoTotal" 
 from Empregado 
 where (Salario > 2000) or (Comissao > 800) 
 order by Salario + Comissao;
 
 -- 17. Lista Nome, Salário, comissão e remuneração total de todos os empregados com salário maior que 2.000 ou comissão maior que 800. Apresenta o resultado classificado em ordem crescente de departamento e em cada departamento, em ordem decrescente de salario.
-select NomeEmpregado,Salario,Comissao, Salario + Comissao As "Remuneracao Total" 
+select NomeEmpregado,Salario,Comissao, Salario + Comissao As "RemuneracaoTotal" 
 from Empregado 
 where (Salario > 2000) or (Comissao > 800) 
 order by IdDepto, Salario desc;
