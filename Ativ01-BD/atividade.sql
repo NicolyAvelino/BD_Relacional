@@ -69,15 +69,15 @@ select NomeEmpregado, Cargo
 from Empregado 
 where NomeEmpregado Like "D%";
 
--- 11. Lista Nome e cargo dos Empregados que o nome tenha N como terceira letra.=========================================
+-- 11. Lista Nome e cargo dos Empregados que o nome tenha N como terceira letra.
 select NomeEmpregado, Cargo 
 from Empregado 
-where NomeEmpregado Like "%N%";
+where NomeEmpregado Like "__N%";
 
 -- 12. Lista Nome e cargo dos Empregados que o nome tenha N (maiúscula ou minúscula) como terceira letra
 select NomeEmpregado, Cargo 
 from Empregado 
-where NomeEmpregado Like "%N%";
+where NomeEmpregado Like "__n%" or "__N%";
 
 -- 13. Lista Nome, Salário, comissão e remuneração total (Salário +  Comissão) de todos os empregados com salário maior que 2.000 ou comissão maior que 800. Apresenta o resultado classificado em ordem alfabética de nome.
 select NomeEmpregado,Salario,Comissao, Salario + Comissao As "RemuneracaoTotal" 
