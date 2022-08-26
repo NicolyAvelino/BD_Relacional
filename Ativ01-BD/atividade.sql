@@ -9,13 +9,13 @@ Departamento(
 )
     
 Empregado(
-    IdEmpregadoint NOT NULL,
+    IdEmpregado int NOT NULL,
     NomeEmpregado varchar(20) NOT NULL,
     IdDeptoint NOT NULL,
     Cargo varchar(6) NOT NULL,
     Tempo_Emp     int   NULL,
     Salario decimal(10,2) NULL,
-    Comissao decimal(10,2) NULL
+    Comissao decimal(10,2) NULL,
     PRIMARY KEY (IdEmpregado)
 )
 -- Feito no SQLiteStudio ================================================================================================
