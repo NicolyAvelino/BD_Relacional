@@ -22,10 +22,16 @@ Empregado
 -- Escreva o comando SQL que execute o solicitado em cada questão abaixo:
 
 -- 33.Listar a coluna Divisao da tabela Departamento.
+select Divisao
+from Departamento;
 
 -- 34.Listar a coluna Divisao da tabela Departamento, porém mostre somente linhas distintas (sem repetição).
+select distinct Divisao
+from Departamento;
 
 -- 35.Crie uma cosulta que faça a concatenação entre as colunas Divisao e Local da tabela Departamento, para separar as colunas utilize ‘ – ‘. Crie o um alias para coluna ‘Divisão + Local‘
+select Divisao + '-' + local As 'Divisão + Local'
+from Departamento;
 
 -- 36.Crie uma consulta que liste as colunas: NomeEmpregado e Salario da tabela Empregado. Crie as seguintes colunas calculadas
 -- Descrição               Formúla          Alias
@@ -33,7 +39,8 @@ Empregado
 -- 20% a mais do Salario   Salario * 1.2   ‘Salário Mais 20%’
 -- 10% a menos do Salario  Salario * 0.9   ‘Salário Menos 10%’
 -- 20% a menos do Salario  Salario * 0.8   ‘Salário Menos 20%
-
+select NomeEmpregado, Salario
+from Empregado;
 -- 37.Crie uma consulta que liste as colunas: NomeEmpregado e Salario da tabela Empregado. Crie as seguintes colunas calculadas:
 -- Descricao: Salario Total           
 -- Formula: Salario + Comissao     
