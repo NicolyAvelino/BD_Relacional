@@ -33,50 +33,86 @@ from Departamento;
 select Divisao + '-' + local As 'Divisão + Local'
 from Departamento;
 
--- 36.Crie uma consulta que liste as colunas: NomeEmpregado e Salario da tabela Empregado. Crie as seguintes colunas calculadas
--- Descrição               Formúla          Alias
--- 10% a mais do Salario   Salario * 1.1   ‘Salário Mais 10%’
--- 20% a mais do Salario   Salario * 1.2   ‘Salário Mais 20%’
--- 10% a menos do Salario  Salario * 0.9   ‘Salário Menos 10%’
--- 20% a menos do Salario  Salario * 0.8   ‘Salário Menos 20%
-select NomeEmpregado, Salario
+-- 36.Crie uma consulta que liste as colunas: NomeEmpregado e Salario da tabela Empregado. Crie as seguintes colunas calculadas:                        
+-- Descrição: 10% a mais do Salario   
+-- Formúla: Salario * 1.1   
+-- Alias: ‘Salário Mais 10%’
+select NomeEmpregado, Salario, Salario * 1.1 As 'Salário Mais 10%'
 from Empregado;
+
+
+-- Descrição: 20% a mais do Salario   
+-- Formúla: Salario * 1.2   
+-- Alias: ‘Salário Mais 20%’
+select NomeEmpregado, Salario, Salario * 1.2 As 'Salário Mais 20%'
+from Empregado;
+
+-- Descrição: 10% a menos do Salario  
+-- Formúla: Salario * 0.9   
+-- Alias: ‘Salário Menos 10%’
+select NomeEmpregado, Salario, Salario * 0.9 As 'Salário Menos 10%'
+from Empregado;
+
+-- Descrição: 20% a menos do Salario  
+-- Formúla: Salario * 0.8   
+-- Alias: ‘Salário Menos 20%
+select NomeEmpregado, Salario, Salario * 0.8 As 'Salário Menos 20%'
+from Empregado;
+
 -- 37.Crie uma consulta que liste as colunas: NomeEmpregado e Salario da tabela Empregado. Crie as seguintes colunas calculadas:
 -- Descricao: Salario Total           
 -- Formula: Salario + Comissao     
 -- Alias: ‘Salário Total’
+select NomeEmpregado, Salario, Salario + Comissao As 'Salário Total'
+from Empregado;
 
 -- Descricao: Salario Total Anual     
 -- Formula: (Salario + Comissao) * 12      
 -- Alias: ‘Salário Total Anual’
+select NomeEmpregado, Salario, (Salario + Comissao) * 12 As 'Salário Total Anual'
+from Empregado;
 
 -- Descricao: Imposto de Renda ( 5 % do Salário Total)
 -- Formula: (Salario + Comissao) * .05 
 -- Alias: ‘Valor Desconto Imposto de Renda’
+select NomeEmpregado, Salario, (Salario + Comissao) * .05 As 'Valor Desconto Imposto de Renda'
+from Empregado;
 
 -- Descricao: Desconto Plano de Saúde (2 % do Salário Total )
 -- Formula: (Salario + Comissao) * .02 
 -- Alias: ‘Valor Desconto Plano de Saúde’
+select NomeEmpregado, Salario, (Salario + Comissao) * .02 As 'Valor Desconto Plano de Saúde'
+from Empregado;
 
 -- Descricao: Desconto Alimentação (1.5 % do Salário Total )
 -- Formula: (Salario + Comissao) * .015 
 -- Alias: ‘Valor Desconto Alimentação’
+select NomeEmpregado, Salario, (Salario + Comissao) * .015 As 'Valor Desconto Alimentação'
+from Empregado;
 
 -- Descricao: Salário Liquido ( Salário Total – Soma dos Descontos)
 -- Formula: (Salario + Comissao) - ((Salario + Comissao) * (.05 + .02 + .015))
 -- Alias: ‘Salário Liquido’
+select NomeEmpregado, Salario, (Salario + Comissao) - ((Salario + Comissao) * (.05 + .02 + .015)) As 'Salário Liquido'
+from Empregado;
 
 -- Descricao: Salário Diário 
 -- Formula: Salario / 30 
 -- Alias: ‘Salário Diário’
+select NomeEmpregado, Salario,Salario / 30 As 'Salário Diário'
+from Empregado;
 
 -- Descricao: Salário por Hora 
 -- Formula: Salario / 30 / 8 
 -- Alias: ‘Salário por Hora’
+select NomeEmpregado, Salario,Salario / 30 / 8 As 'Salário por Hora'
+from Empregado;
 
 -- Descricao: Salário por Minuto 
 -- Formula: Salario / 30 / 8 / 60 
 -- Alias: ‘Salário por Minuto’
+select NomeEmpregado, Salario,Salario / 30 / 8 / 60 As 'Salário por Minuto'
+from Empregado;
 
 -- Descricao: Salário por Segundo 
 -- Formula: Salario / 30 / 8 / 60 / 60 
