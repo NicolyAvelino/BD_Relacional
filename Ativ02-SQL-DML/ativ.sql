@@ -30,7 +30,7 @@ select distinct Divisao
 from Departamento;
 
 -- 35.Crie uma cosulta que faça a concatenação entre as colunas Divisao e Local da tabela Departamento, para separar as colunas utilize ‘ – ‘. Crie o um alias para coluna ‘Divisão + Local‘
-select Divisao + '-' + local As 'Divisão + Local'
+select Divisao || ' - ' || local As 'Divisão + Local'
 from Departamento;
 
 -- 36.Crie uma consulta que liste as colunas: NomeEmpregado e Salario da tabela Empregado. Crie as seguintes colunas calculadas:                        
@@ -117,4 +117,6 @@ from Empregado;
 -- Descricao: Salário por Segundo 
 -- Formula: Salario / 30 / 8 / 60 / 60 
 -- Alias: ‘Salário por Segundo
+select NomeEmpregado, Salario, Salario / 30 / 8 / 60 / 60 As 'Salário por Segundo'
+from Empregado;
 --Observação: Os valores NULOS devem ser tranformados em ZERO
