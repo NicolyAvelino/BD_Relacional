@@ -34,6 +34,7 @@ select Divisao || ' - ' || local As 'Divisão + Local'
 from Departamento;
 
 -- 36.Crie uma consulta que liste as colunas: NomeEmpregado e Salario da tabela Empregado. Crie as seguintes colunas calculadas:                        
+
 -- valores null tranformar para 0
 UPDATE Empregado
 SET Salario = 0
