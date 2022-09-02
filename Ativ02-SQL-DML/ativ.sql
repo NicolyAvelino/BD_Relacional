@@ -30,10 +30,17 @@ select distinct Divisao
 from Departamento;
 
 -- 35.Crie uma cosulta que faça a concatenação entre as colunas Divisao e Local da tabela Departamento, para separar as colunas utilize ‘ – ‘. Crie o um alias para coluna ‘Divisão + Local‘
-select Divisao || ' - ' || local As 'Divisão + Local'
+select Divisao || ' – ' || local As 'Divisão + Local'
 from Departamento;
 
 -- 36.Crie uma consulta que liste as colunas: NomeEmpregado e Salario da tabela Empregado. Crie as seguintes colunas calculadas:                        
+-- Enviar para o professor
+select NomeEmpregado, Salario, 
+Salario * 1.1 As 'Salário Mais 10%',
+Salario * 1.2 As 'Salário Mais 20%',
+Salario * 0.9 As 'Salário Menos 10%',
+Salario * 0.8 As 'Salário Menos 20%'
+from Empregado;
 
 -- valores null tranformar para 0
 UPDATE Empregado
@@ -66,6 +73,21 @@ select NomeEmpregado, Salario, Salario * 0.8 As 'Salário Menos 20%'
 from Empregado;
 
 -- 37.Crie uma consulta que liste as colunas: NomeEmpregado e Salario da tabela Empregado. Crie as seguintes colunas calculadas:
+-- enviar para o professor
+select NomeEmpregado, Salario, 
+Salario + Comissao As 'Salário Total',
+(Salario + Comissao) * 12 As 'Salário Total Anual',
+(Salario + Comissao) * .05 As 'Valor Desconto Imposto de Renda',
+(Salario + Comissao) * .02 As 'Valor Desconto Plano de Saúde',
+(Salario + Comissao) * .015 As 'Valor Desconto Alimentação',
+(Salario + Comissao) - ((Salario + Comissao) * (.05 + .02 + .015)) As 'Salário Liquido',
+Salario / 30 As 'Salário Diário',
+Salario / 30 / 8 As 'Salário por Hora',
+Salario / 30 / 8 / 60 As 'Salário por Minuto',
+Salario / 30 / 8 / 60 / 60 As 'Salário por Segundo',
+isnull(salario, 0) As 'Salário'
+from Empregado;
+
 -- Descricao: Salario Total           
 -- Formula: Salario + Comissao     
 -- Alias: ‘Salário Total’
