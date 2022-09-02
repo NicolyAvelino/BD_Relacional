@@ -39,7 +39,8 @@ select NomeEmpregado, Salario,
 Salario * 1.1 As 'Salário Mais 10%',
 Salario * 1.2 As 'Salário Mais 20%',
 Salario * 0.9 As 'Salário Menos 10%',
-Salario * 0.8 As 'Salário Menos 20%'
+Salario * 0.8 As 'Salário Menos 20%',
+isnull(Salario, 0) As 'Salário'
 from Empregado;
 
 -- valores null tranformar para 0
@@ -85,7 +86,7 @@ Salario / 30 As 'Salário Diário',
 Salario / 30 / 8 As 'Salário por Hora',
 Salario / 30 / 8 / 60 As 'Salário por Minuto',
 Salario / 30 / 8 / 60 / 60 As 'Salário por Segundo',
-isnull(salario, 0) As 'Salário'
+isnull(Salario, 0) As 'Salário'
 from Empregado;
 
 -- Descricao: Salario Total           
