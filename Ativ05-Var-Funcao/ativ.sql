@@ -35,9 +35,9 @@ CREATE FUNCTION f_ParImpar(@numero int)
 RETURNS varchar(10)
 AS
 BEGIN 
-    if(@numero % 2 == 0)
-        return “Par”
-    return “Ímpar”
+    IF(@numero % 2 = 0) 
+    	return 'Par';
+    return 'Ímpar';
 END
     
 
@@ -47,7 +47,15 @@ END
 -- – Receber dois parâmetros, sendo um valor e um percentual,
 -- calcular o valor percentual relativo ao valor informado e
 -- retornar esse valor
-
+CREATE FUNCTION f_Percentual(
+  @valor decimal(10,2), 
+  @perc decimal(5,2)
+)
+RETURNS decimal(10,2)
+AS 
+BEGIN
+	return @valor * @perc;
+END
 -- 79. Criar uma função
 -- - f_UltimoNome (@nome varchar(200) ) RETURN decimal(200)
 -- – Receber um nome e retornar apenas o último nome
