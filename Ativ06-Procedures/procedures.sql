@@ -17,36 +17,60 @@ CREATE TABLE Empregado(
     Comissao decimal(10,2) NULL,
     PRIMARY KEY (IdEmpregado)
 )
-
+-- OK ==============================================================================
 -- Item: 82
 -- Nome: DepartamentoUpdate
 -- Paramêtros de Entrada: @idDepto int, @NomeDepto varchar(15), @Gerente int, @Divisao varchar(10), @Local varchar(15)
 -- Paramêtros de Saída: NULL
 -- Descrição: Alterar os dados relativos ao @idDepto
-ALTER PROCEDURE DepartamentoUpdate(
-	@idDepto int, @NomeDepto varchar(15), @Gerente int, @Divisao varchar(10), @Local varchar(15)
+CREATE PROCEDURE DepartamentoUpdate(
+	@idDepto int, 
+    @NomeDepto varchar(15), 
+    @Gerente int, 
+    @Divisao varchar(10), 
+    @Local varchar(15)
 )
 AS
+    UPDATE
+        Departamento
+    SET
+        idDepto = @idDepto, 
+        NomeDepto = @NomeDepto, 
+        Gerente = @Gerente, 
+        Divisao = @Divisao, 
+        Local = @Local
+    WHERE 
+        idDepto = @idDepto
+
+EXECUTE DepartamentoUpdate 2000, 'VENDAS', 1005,'SUL','SP'
 
 
+INSERT INTO Departamento VALUES(2000, 'VENDAS', 1005,'NORTE','São Paulo')
+INSERT INTO Departamento VALUES(2000, 'VENDAS', 1005,'NORTE','São Paulo')
 
--- Item: 83
+-- OK ================================================================================
+-- Item: 83  
 -- Nome: DepartamentoDelete
 -- Paramêtros de Entrada: @idDepto int
 -- Paramêtros de Saída: @TotalDepartamentos
 -- Descrição: Excluir o departamento relativo ao @idDepto, e retornar o total de departamentos através de @TotalDepartamentos
 CREATE PROCEDURE DepartamentoDelete(
-    @idDepto int
+    @idDepto int,
+    @TotalDepartamentos int OUTPUT
 )
 AS  
-    SELECT 
-        idDepto,
-        COUNT(*) AS TotalDepartamentos,
-    FROM Empregado
-    GROUP BY idDepto
-    
+    DELETE 
+        FROM DEPARTAMENTO
+        WHERE idDepto = @idDepto
 
--- Item: 84
+    SELECT @TotalDepartamentos = COUNT(*) FROM Departamento
+
+DECLARE @TotalDepartamentos int
+EXECUTE DepartamentoDelete 2003, @TotalDepartamentos OUTPUT
+SELECT @TotalDepartamentos 'Total Departamentos'
+
+
+-- Item: 84 OK ===================================================================
 -- Nome: EmpregadoInsert
 -- Paramêtros de Entrada: @IdEmpregado int, @NomeEmpregado varchar(20), @IdDepto int, @Cargo varchar(6), @Tempo_Emp int, @Salario decimal(10,2), @Comissao decimal(10,2)
 -- Paramêtros de Saída: @TotalEmpregados
@@ -58,30 +82,35 @@ CREATE PROCEDURE EmpregadoInsert(
   	@Cargo varchar(6), 
     @Tempo_Emp int, 
   	@Salario decimal(10,2), 
-    @Comissao decimal(10,2)
+    @Comissao decimal(10,2),
+    @TotalEmpregados int OUTPUT
 )
 AS
-INSERT INTO Empregado(
-    IdEmpregado,
-    NomeEmpregado,
-    IdDepto,
-  	Cargo,
-    Tempo_Emp,
-  	Salario,
-    Comissao
-)
-VALUES(
-    @IdEmpregado,
-    @NomeEmpregado,
-    @IdDepto,
-  	@Cargo,
-    @Tempo_Emp,
-  	@Salario,
-    @Comissao
-)
+    INSERT INTO Empregado(
+        IdEmpregado,
+        NomeEmpregado,
+        IdDepto,
+        Cargo,
+        Tempo_Emp,
+        Salario,
+        Comissao
+    )
+    VALUES(
+        @IdEmpregado,
+        @NomeEmpregado,
+        @IdDepto,
+        @Cargo,
+        @Tempo_Emp,
+        @Salario,
+        @Comissao
+    )
+    SELECT @TotalEmpregados = COUNT(*) FROM Empregado 
 
-Execute EmpregadoInsert 1000, 'Carolina', 2000,'VENDAS', 2, 1500, 500
+DECLARE @TotalEmpregados int 
+EXECUTE EmpregadoInsert 1009, 'Leticia', 2000,'VENDAS', 3, 2500, 500, @TotalEmpregados output
+SELECT @TotalEmpregados 'TotalEmpregados'
 
+-- OK ==================================================================================
 -- Item: 85
 -- Nome: EmpregadoUpdate
 -- Paramêtros de Entrada: @IdEmpregado int, @NomeEmpregado varchar(20), @IdDepto int, @Cargo varchar(6), @Tempo_Emp int, @Salario decimal(10,2), @Comissao decimal(10,2)
@@ -97,16 +126,44 @@ CREATE PROCEDURE EmpregadoUpdate(
     @Comissao decimal(10,2)
 )
 AS
-    
+    UPDATE
+        Empregado
+    SET 
+        IdEmpregado  = @IdEmpregado,
+        NomeEmpregado = @NomeEmpregado,
+        IdDepto = @IdDepto,
+        Cargo = @Cargo,
+        Tempo_Emp = @Tempo_Emp,
+        Salario = @Salario,
+        Comissao = @Comissao
+    WHERE
+        IdEmpregado = @IdEmpregado
 
--- Item: 86
+EXECUTE EmpregadoUpdate 1000, 'Carolina Silva', 2001, 'TI', 2, 2000, 1000
+
+-- OK ======================================================================
+-- Item: 86 
 -- Nome: EmpregadoDelete
 -- Paramêtros de Entrada: @IdEmpregado int
 -- Paramêtros de Saída: @TotalEmpregados
 -- Descrição: Excluir o empregado relativo ao @IdEmpregado, e retornar o total de empregados através de @TotalEmpregados
+CREATE PROCEDURE EmpregadoDelete(
+    @IdEmpregado int,
+    @TotalEmpregados int OUTPUT
+)
+AS
+    DELETE
+        FROM Empregado
+        WHERE IdEmpregado = @IdEmpregado
 
+    SELECT @TotalEmpregados = COUNT(*) FROM EMPREGADO
 
--- Item: 87
+DECLARE @TotalEmpregados int
+EXECUTE EmpregadoDelete 1006, @TotalEmpregados OUTPUT
+SELECT @TotalEmpregados 'Total Empregados'
+
+-- OK =================================================================================
+-- Item: 87 
 -- Nome: EmpregadoSelect
 -- Paramêtros de Entrada: NULL
 -- Paramêtros de Saída: NULL
@@ -117,4 +174,4 @@ AS
     FROM Empregado
 GO
 
-execute EmpregadoSelect
+EXECUTE EmpregadoSelect
