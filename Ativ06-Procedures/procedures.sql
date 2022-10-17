@@ -42,11 +42,11 @@ AS
     WHERE 
         idDepto = @idDepto
 
-EXECUTE DepartamentoUpdate 2000, 'VENDAS', 1005,'SUL','SP'
+EXECUTE DepartamentoUpdate 2003, 'RH', 1000,'SUL','SC'
 
 
 INSERT INTO Departamento VALUES(2000, 'VENDAS', 1005,'NORTE','São Paulo')
-INSERT INTO Departamento VALUES(2000, 'VENDAS', 1005,'NORTE','São Paulo')
+INSERT INTO Departamento VALUES(2001, 'TI', 1002,'SUL','SC')
 
 -- OK ================================================================================
 -- Item: 83  
@@ -107,9 +107,10 @@ AS
     SELECT @TotalEmpregados = COUNT(*) FROM Empregado 
 
 DECLARE @TotalEmpregados int 
-EXECUTE EmpregadoInsert 1009, 'Leticia', 2000,'VENDAS', 3, 2500, 500, @TotalEmpregados output
+EXECUTE EmpregadoInsert 1000, 'Leticia', 2000,'VENDAS', 3, 2500, 500, @TotalEmpregados output
 SELECT @TotalEmpregados 'TotalEmpregados'
 
+EXECUTE EmpregadoInsert 1002, 'Nicoly', 2001,'TI', 2, 2500, 500, @TotalEmpregados output
 -- OK ==================================================================================
 -- Item: 85
 -- Nome: EmpregadoUpdate
@@ -139,7 +140,7 @@ AS
     WHERE
         IdEmpregado = @IdEmpregado
 
-EXECUTE EmpregadoUpdate 1000, 'Carolina Silva', 2001, 'TI', 2, 2000, 1000
+EXECUTE EmpregadoUpdate 1000, 'Leticia', 2000,'VENDAS', 4, 4500, 700
 
 -- OK ======================================================================
 -- Item: 86 
@@ -159,7 +160,7 @@ AS
     SELECT @TotalEmpregados = COUNT(*) FROM EMPREGADO
 
 DECLARE @TotalEmpregados int
-EXECUTE EmpregadoDelete 1006, @TotalEmpregados OUTPUT
+EXECUTE EmpregadoDelete 1000, @TotalEmpregados OUTPUT
 SELECT @TotalEmpregados 'Total Empregados'
 
 -- OK =================================================================================
@@ -172,6 +173,5 @@ CREATE PROCEDURE EmpregadoSelect
 AS
     SELECT *
     FROM Empregado
-GO
 
 EXECUTE EmpregadoSelect
