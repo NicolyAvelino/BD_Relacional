@@ -70,7 +70,7 @@ EXECUTE DepartamentoDelete 2003, @TotalDepartamentos OUTPUT
 SELECT @TotalDepartamentos 'Total Departamentos'
 
 
--- Item: 84 OK ===================================================================
+-- Item: 84 
 -- Nome: EmpregadoInsert
 -- Paramêtros de Entrada: @IdEmpregado int, @NomeEmpregado varchar(20), @IdDepto int, @Cargo varchar(6), @Tempo_Emp int, @Salario decimal(10,2), @Comissao decimal(10,2)
 -- Paramêtros de Saída: @TotalEmpregados
