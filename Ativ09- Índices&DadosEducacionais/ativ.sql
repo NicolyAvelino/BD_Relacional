@@ -72,13 +72,14 @@ insert aluno(sg_uf, no_municipio, qt_matricula) values('RS','Não-Me-Toque',1)
 CREATE INDEX idx_aluno ON aluno(sg_uf, no_municipio, qt_matricula)
 
 -- 108. Comando SQL para trazer a quantidade de alunos.
-SELECT COUNT(*) AS 'Quantidade de Alunos' FROM aluno -- resposta 36
+SELECT SUM(qt_matricula) AS 'Quantidade de Alunos' FROM aluno
+ -- resposta 397
 
 -- 109. Nome da Cidade e da UF pesquisada.
 -- Cidade Não-Me-Toque RS
 
 -- 110. Quantidade de linhas da cidade pesquisada?
-SELECT COUNT(*) FROM aluno -- resposta 36
+SELECT COUNT(*) AS 'Quantidade de linhas' FROM aluno -- resposta 36
 
 -- 111. Quantidade de alunos matriculados da cidade pesquisada?
 SELECT no_municipio, SUM(qt_matricula) AS 'Quantidade de Alunos' 
